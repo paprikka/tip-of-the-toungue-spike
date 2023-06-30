@@ -2,6 +2,7 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import { GuessResponsePayload } from "./api/guess/route";
+import { GuessList } from "./components/guess-list";
 
 const makeUnique = (arr: string[]) => Array.from(new Set(arr));
 export default function Home() {
@@ -55,19 +56,9 @@ export default function Home() {
       {guesses.length ? (
         <div className={styles.response}>
           <div className={styles.responseContent}>
+            <h2>Does any of those ring a bell?</h2>
             {guesses ? (
-              <ul>
-                {guesses.map((guess) => (
-                  <li
-                    className={
-                      excluded.includes(guess) ? styles.resultExcluded : ""
-                    }
-                    key={guess}
-                  >
-                    {guess}
-                  </li>
-                ))}
-              </ul>
+              <GuessList excluded={excluded} guesses={guesses} />
             ) : null}
             <div className={styles.responseActions}>
               <button onClick={() => setGuesses([])}>Yes, that's it!</button>

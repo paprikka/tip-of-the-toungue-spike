@@ -1,0 +1,45 @@
+.container {
+  padding: 0;
+  margin: 1rem 0;
+  list-style: none;
+}
+
+.container li {
+  position: relative;
+  transition: 0.4s color;
+}
+
+.isExcluded {
+}
+
+.isExcluded::before {
+  content: "👎";
+  width: 1rem;
+  display: inline-block;
+  margin-inline-end: 0.5rem;
+  margin-inline-start: -1.5rem;
+}
+
+.container li span {
+  transition: 1s opacity, 1s transform;
+  transform-origin: left;
+  transform: scale(0, 1);
+}
+
+.isExcluded span {
+  opacity: 0.7;
+  position: relative;
+  z-index: 1;
+}
+
+.isExcluded span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  right: 0;
+  height: 2px;
+  display: block;
+  background: var(--color-text);
+  transform: scale(1);
+}

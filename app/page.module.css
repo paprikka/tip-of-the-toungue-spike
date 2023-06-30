@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 6rem;
+  padding: 1rem;
   min-height: 100vh;
 }
 
@@ -12,7 +12,7 @@
   display: block;
   padding: 0.5rem;
   border: none;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
   line-height: inherit;
   font-family: inherit;
   font-size: 1em;
@@ -62,8 +62,4 @@
   display: flex;
   font-size: var(--font-size-m);
   gap: 1rem;
-}
-
-.resultExcluded {
-  color: red;
 }
