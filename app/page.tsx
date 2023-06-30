@@ -1,95 +1,95 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState } from "react";
+import styles from "./page.module.css";
+import { GuessResponsePayload } from "./api/guess/route";
 
+const makeUnique = (arr: string[]) => Array.from(new Set(arr));
 export default function Home() {
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [guesses, setGuesses] = useState<string[]>([]);
+  const [excluded, setExcluded] = useState<string[]>([]);
+
+  const guess = (phrase: string, excluded: string[]) => {
+    setStatus("loading");
+    fetch("/api/guess", {
+      method: "POST",
+      body: JSON.stringify({ phrase, excluded }),
+    })
+      .then((_) => (_.ok ? _.json() : Promise.reject()))
+      .then((result: GuessResponsePayload) => {
+        setGuesses(makeUnique([...result.guesses, ...guesses]));
+        setStatus("idle");
+      })
+      .catch(() => {
+        setStatus("error");
+      });
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setExcluded([]);
+    guess(phrase, excluded);
+  };
+
+  const [phrase, setPhrase] = useState<string>(
+    "A movie in which a girl finds an expensive dress for cheap (pink or red) and uses it to fit in with rich people. She struggles to find other expensive clothes and transforms the dress several times to pretend it's different outfits"
+  );
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
+      <h1>Tip of the tongue</h1>
+      <form className={styles.form} onSubmit={handleFormSubmit}>
+        <p>Argghh... I have a phrase on the tip of my tongue. It's a(n):</p>
         <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
+          <textarea
+            value={phrase}
+            onChange={(e) => {
+              setPhrase(e.target.value);
+            }}
+          />
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        <button>Figure it out!</button>
+        {status === "loading" ? <span> loading...</span> : null}
+      </form>
+
+      {guesses.length ? (
+        <div className={styles.response}>
+          <div className={styles.responseContent}>
+            {guesses ? (
+              <ul>
+                {guesses.map((guess) => (
+                  <li
+                    className={
+                      excluded.includes(guess) ? styles.resultExcluded : ""
+                    }
+                    key={guess}
+                  >
+                    {guess}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <div className={styles.responseActions}>
+              <button onClick={() => setGuesses([])}>Yes, that's it!</button>
+              <button
+                onClick={() => {
+                  const newExcluded = [...excluded, ...guesses];
+                  setExcluded(newExcluded);
+                  guess(phrase, newExcluded);
+                }}
+                disabled={status === "loading"}
+              >
+                {status === "loading"
+                  ? "loading..."
+                  : "No, that's not it... give me more"}
+              </button>
+              <button onClick={() => setGuesses([])}>
+                Nope, let me rephrase
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      ) : null}
     </main>
-  )
+  );
 }
