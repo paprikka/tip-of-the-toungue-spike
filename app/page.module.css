@@ -1,6 +1,6 @@
 .pageContainer {
   position: absolute;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
   inset: 0;
   display: flex;
   flex-direction: column;

@@ -23,12 +23,18 @@ export const useAppStore = create<AppState>((set, get) => ({
   requestGuesses: async () => {
     set({ status: "loading", error: undefined });
     try {
-      const response = await fetch("/api/guess", {
+      const fetchPromise = fetch("/api/guess", {
         method: "POST",
         body: JSON.stringify({
           description: get().description,
         }),
       });
+
+      const [response] = await Promise.all([
+        fetchPromise,
+        new Promise((r) => setTimeout(r, 2000)),
+      ]);
+
       const json = (await response.json()) as APIGuessResponsePayload;
       set({ lastGuessResponse: json, status: "results" });
     } catch (error) {
