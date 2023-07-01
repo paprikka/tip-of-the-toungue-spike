@@ -12,7 +12,28 @@
 }
 
 .guesses {
+  padding: 0;
 }
 .guesses li {
   font-size: var(--font-size-l);
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+  line-height: 2;
+  position: relative;
+}
+
+.guesses li::before {
+  content: "-";
+  position: absolute;
+  left: -1rem;
+}
+
+.guesses li a {
+  text-decoration: none;
+}
+
+.guesses li a:active {
+  scale: 1.2;
 }

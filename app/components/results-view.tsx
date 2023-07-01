@@ -11,7 +11,18 @@ export const ResultsView: FC = () => {
   const handleBackClick = () => restart();
 
   const renderGuesses = (guesses: Guess[]) =>
-    guesses.map((guess, index) => <li key={guess.label}>{guess.label}</li>);
+    guesses.map((guess, index) => (
+      <li key={guess.label}>
+        {guess.label}{" "}
+        <a
+          href={`https://duckduckgo.com/?va=v&t=ha&q=${encodeURIComponent(
+            guess.label
+          )}&ia=web`}
+        >
+          🔎
+        </a>
+      </li>
+    ));
 
   return (
     <div className={styles.container}>
