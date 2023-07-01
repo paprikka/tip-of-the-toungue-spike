@@ -1,5 +1,6 @@
 .container {
   --button-color-bg: var(--color-accent-1);
+  color: var(--color-text);
   appearance: none;
   border: 2px solid;
   background: var(--button-color-bg);
