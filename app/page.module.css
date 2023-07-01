@@ -1,15 +1,22 @@
-.pageContainer {
+.viewportContainer {
   position: absolute;
-  padding: 0 1rem 1rem;
   inset: 0;
   display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+
+.pageContainer {
+  padding: 0 1rem 1rem;
+  max-width: 30rem;
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
 }
 
 .header {
 }
+
 .main {
   flex: 1;
   display: flex;
