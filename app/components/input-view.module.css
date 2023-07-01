@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr 3fr auto;
+  gap: 1rem;
+}
+
+.container h2 {
+  font-size: var(--font-size-l);
+  margin: 0;
+}
+
+.container .dimmed {
+  opacity: 0.4;
+}

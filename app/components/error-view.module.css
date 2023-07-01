@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.container h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.container pre {
+  width: 100%;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  border: 2px solid;
+  padding: 0.5rem;
+  font-size: var(--font-size-s);
+}
+
+.container summary {
+  font-size: var(--font-size-m);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.container summary::marker {
+  content: "👉🏼 ";
+  display: inline-block;
+}
+
+.container details[open] summary::marker {
+  content: "👇🏼 ";
+}

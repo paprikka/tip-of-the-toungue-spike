@@ -1,0 +1,32 @@
+.container {
+  --button-color-bg: var(--color-accent-1);
+  appearance: none;
+  border: 2px solid;
+  background: var(--button-color-bg);
+  line-height: 2;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: inherit;
+
+  box-shadow: 4px 4px 0 var(--color-text);
+  cursor: pointer;
+}
+
+.level-negative {
+  --button-color-bg: var(--color-accent-2);
+}
+
+.container:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
+  left: 4px;
+}
+
+.container[disabled] {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--color-text);
+  opacity: 0.9;
+  cursor: not-allowed;
+}
