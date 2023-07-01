@@ -22,10 +22,6 @@
     0 0.2rem 0.5rem rgba(0, 0, 0, 0.1), 0 0.1rem 0.1rem rgba(0, 0, 0, 0.07);
 }
 
-::selection {
-  background-color: var(--color-accent-2-40);
-}
-
 ::backdrop {
   /* ! backdrop can't use CSS vars *
   /* https://stackoverflow.com/questions/58818299/css-variables-not-working-in-dialogbackdrop/ */
@@ -47,13 +43,13 @@ body {
 
   accent-color: var(--color-accent-1);
 }
-
+/* 
 @media (min-width: 440px) {
   html,
   body {
     font-size: 20px;
   }
-}
+} */
 
 body {
   background-color: var(--color-bg);

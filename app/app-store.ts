@@ -13,8 +13,7 @@ export type AppState = {
 };
 
 export const useAppStore = create<AppState>((set, get) => ({
-  description:
-    "a song by Bjork, where she is running through a forest. She's surrounded by forest creatures (bears, etc...)",
+  description: "",
   lastGuessResponse: undefined,
   error: undefined,
   status: "idle",

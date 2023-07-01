@@ -7,7 +7,7 @@ import { Button } from "./button";
 export const InputView = ({}) => {
   const { description, setDescription, requestGuesses } = useAppStore();
   return (
-    <div className={styles.container}>
+    <form className={styles.container} onSubmit={(e) => e.preventDefault()}>
       <h2>
         Arrgh, there’s a phrase on the tip of my tongue, but can’t remember what
         it is... it’s a<span className={styles.dimmed}>(n)</span>:
@@ -22,8 +22,8 @@ export const InputView = ({}) => {
         disabled={description.length < 10}
         onClick={() => requestGuesses()}
       >
-        Submit
+        Guess
       </Button>
-    </div>
+    </form>
   );
 };

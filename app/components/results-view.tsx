@@ -24,6 +24,7 @@ export const ResultsView: FC = () => {
       ) : null}
 
       <div className={styles.actions}>
+        <Button onClick={() => location.reload()}>Yes!</Button>
         <Button level="negative" onClick={handleRetryClick}>
           Nope, guess again
         </Button>

@@ -22,25 +22,6 @@ export const POST = async (request: Request) => {
   if (!description) return onError(new Error("Invalid payload"));
   // if (!(excluded && Array.isArray(excluded)))
   //   return onError(new Error("Invalid payload"));
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return NextResponse.json({
-    guesses: [
-      {
-        label: "Joga",
-      },
-      {
-        label: "Human Behaviour",
-      },
-      {
-        label: "Army of Me",
-      },
-      {
-        label: "Hyperballad",
-      },
-    ],
-    reasoning:
-      "The clues mention a song by Bjork where she is running through a forest and surrounded by forest creatures. Based on these clues, the song that fits the description is 'Joga'.",
-  });
 
   const guessResponse = await getCompletion(description, []).catch();
   if (!guessResponse)

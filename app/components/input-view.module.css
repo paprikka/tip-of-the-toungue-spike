@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-rows: 1fr 3fr auto;
+  grid-template-rows: min-content 10rem min-content;
   gap: 1rem;
 }
 
