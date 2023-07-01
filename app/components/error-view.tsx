@@ -8,7 +8,7 @@ export const ErrorView: FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Something's wrong :(</h2>
+      <h2>Something&apos;s wrong :(</h2>
       <Button onClick={() => window.location.reload()}>Try again</Button>
       <details>
         <summary>Details</summary>
