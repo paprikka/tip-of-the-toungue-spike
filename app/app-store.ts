@@ -6,12 +6,14 @@ export type AppState = {
   exclude: string[];
   lastGuessResponse?: APIGuessResponsePayload;
   error?: string;
+  isHappy: boolean;
   status: "idle" | "loading" | "results" | "error";
   setDescription: (description: string) => void;
   setExclude: (guessLabels: string[]) => void;
   requestGuesses: () => Promise<void>;
 
   restart: () => void;
+  setIsHappy: (isHappy: boolean) => void;
 };
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -19,6 +21,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   exclude: [],
   lastGuessResponse: undefined,
   error: undefined,
+  isHappy: false,
   status: "idle",
 
   setDescription: (description: string) => set({ description }),
@@ -53,4 +56,5 @@ export const useAppStore = create<AppState>((set, get) => ({
   restart: () => {
     set({ status: "idle" });
   },
+  setIsHappy: (isHappy: boolean) => set({ isHappy }),
 }));

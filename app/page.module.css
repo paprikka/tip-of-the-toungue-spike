@@ -5,6 +5,12 @@
   justify-content: center;
 }
 
+@media (min-width: 440px) {
+  .viewportContainer {
+    inset: 2rem;
+  }
+}
+
 .pageContainer {
   padding: 0 1rem 1rem;
   max-width: 30rem;
@@ -13,8 +19,8 @@
   gap: 1rem;
   display: grid;
   grid-template-rows: min-content auto min-content;
-  border: 2px solid;
-  box-shadow: 4px 4px 0 var(--color-text);
+  border: 4px solid;
+  box-shadow: 6px 6px 0 var(--color-text);
   background-color: var(--color-bg);
 }
 

@@ -16,7 +16,8 @@ export const InputView = ({}) => {
       <TextArea
         value={description}
         onChange={setDescription}
-        placeholder="A movie in which a girl finds an expensive dress for cheap (pink or red) and uses it to fit in with rich people. She struggles to find other expensive clothes and transforms the dress several times to pretend it's different outfits"
+        placeholder="Be as descriptive as you can, e.g.:
+         A movie in which a girl finds an expensive dress for cheap (pink or red) and uses it to fit in with rich people. She struggles to find other expensive clothes and transforms the dress several times to pretend it's different outfits"
       ></TextArea>
       <Button
         disabled={description.length < 10}

@@ -28,7 +28,11 @@ export default function Home() {
           {status === "error" ? <ErrorView /> : null}
         </main>
         <footer className={styles.footer}>
-          Made by 🐐 and <a href="https://sonnet.io">Rafal</a>.
+          Made by 🐐 and{" "}
+          <a href="https://sonnet.io" target="_blank">
+            Rafal
+          </a>
+          .
         </footer>
       </div>
     </div>

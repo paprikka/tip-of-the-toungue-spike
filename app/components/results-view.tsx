@@ -5,7 +5,7 @@ import { Button } from "./button";
 import styles from "./results-view.module.css";
 
 export const ResultsView: FC = () => {
-  const { lastGuessResponse, requestGuesses, restart, setExclude } =
+  const { lastGuessResponse, requestGuesses, restart, setExclude, setIsHappy } =
     useAppStore();
 
   const handleRetryClick = () => {
@@ -13,6 +13,13 @@ export const ResultsView: FC = () => {
     requestGuesses();
   };
   const handleBackClick = () => restart();
+
+  const handleFoundClick = async () => {
+    setIsHappy(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setIsHappy(false);
+    // location.reload();
+  };
 
   const renderGuesses = (guesses: Guess[]) =>
     guesses.map((guess) => (
@@ -38,7 +45,7 @@ export const ResultsView: FC = () => {
       ) : null}
 
       <div className={styles.actions}>
-        <Button onClick={() => location.reload()}>Yes!</Button>
+        <Button onClick={handleFoundClick}>Yes!</Button>
         <Button level="negative" onClick={handleRetryClick}>
           Nope, guess again
         </Button>

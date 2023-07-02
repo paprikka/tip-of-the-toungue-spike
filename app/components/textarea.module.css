@@ -1,7 +1,7 @@
 .container {
   border: 2px solid;
   font-family: var(--font-family-body);
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-l);
   padding: 0.5em;
   box-shadow: 4px 4px 0 var(--color-text);
 }

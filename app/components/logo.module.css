@@ -10,6 +10,10 @@
   animation: move-up-and-down 1s linear infinite;
 }
 
+.container.isHappy img {
+  animation: move-up-and-down 0.25s linear infinite;
+}
+
 @keyframes move-up-and-down {
   0% {
     transform: translateY(0);
