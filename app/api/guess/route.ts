@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { getCompletion } from "./openai";
-import { APIGuessRequestPayload } from "@/app/types";
+import { APIErrorResponsePayload, APIGuessRequestPayload } from "@/app/types";
 
 const onError = (error: Error, statusCode = 500) =>
-  NextResponse.json(
+  NextResponse.json<APIErrorResponsePayload>(
     {
-      message: error.message,
+      error: error.message,
     },
     {
       status: statusCode,

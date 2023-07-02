@@ -2,6 +2,10 @@ export type Guess = {
   label: string;
 };
 
+export type APIErrorResponsePayload = {
+  error: string;
+};
+
 export type APIGuessResponsePayload = {
   guesses: Guess[];
 };
