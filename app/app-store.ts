@@ -33,7 +33,9 @@ export const useAppStore = create<AppState>((set, get) => ({
           description: get().description,
           exclude: get().exclude,
         } as APIGuessRequestPayload),
-      });
+      }).then((res) =>
+        res.ok ? res : Promise.reject(new Error(res.statusText))
+      );
 
       const [response] = await Promise.all([
         fetchPromise,
