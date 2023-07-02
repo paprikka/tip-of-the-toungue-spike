@@ -18,12 +18,12 @@ export const POST = async (request: Request) => {
     .catch();
   if (!payload) return onError(new Error("Invalid payload"));
 
-  const { description } = payload;
+  const { description, exclude } = payload;
   if (!description) return onError(new Error("Invalid payload"));
-  // if (!(excluded && Array.isArray(excluded)))
-  //   return onError(new Error("Invalid payload"));
+  if (!(exclude && Array.isArray(exclude)))
+    return onError(new Error("Invalid payload"));
 
-  const guessResponse = await getCompletion(description, []).catch();
+  const guessResponse = await getCompletion(description, exclude).catch();
   if (!guessResponse)
     return onError(new Error("Null guess response received "));
 

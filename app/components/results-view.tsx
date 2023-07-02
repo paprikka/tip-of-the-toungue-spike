@@ -5,13 +5,17 @@ import { Button } from "./button";
 import styles from "./results-view.module.css";
 
 export const ResultsView: FC = () => {
-  const { lastGuessResponse, requestGuesses, restart } = useAppStore();
+  const { lastGuessResponse, requestGuesses, restart, setExclude } =
+    useAppStore();
 
-  const handleRetryClick = () => requestGuesses();
+  const handleRetryClick = () => {
+    setExclude(lastGuessResponse?.guesses.map((guess) => guess.label) || []);
+    requestGuesses();
+  };
   const handleBackClick = () => restart();
 
   const renderGuesses = (guesses: Guess[]) =>
-    guesses.map((guess, index) => (
+    guesses.map((guess) => (
       <li key={guess.label}>
         {guess.label}{" "}
         <a
@@ -27,7 +31,6 @@ export const ResultsView: FC = () => {
   return (
     <div className={styles.container}>
       <h2>Does any of those ring a bell?</h2>
-
       {lastGuessResponse?.guesses ? (
         <ul className={styles.guesses}>
           {renderGuesses(lastGuessResponse.guesses)}

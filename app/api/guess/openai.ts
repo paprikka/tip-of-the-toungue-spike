@@ -13,7 +13,14 @@ const makePrompt = (phrase: string, excluded: string[]) =>
 - Always stick to the clues.
 - Base your guess on the specifics of the description, e.g. concrete objects, characters or events mentioned.
 - Respond concisely.
-${excluded ? `- Exclude the following guesses: ${excluded.join()}` : ""}
+${
+  excluded
+    ? `
+- You must exclude the following guesses: ${excluded.join()}
+- never include the excluded guesses in your response.
+`.trim()
+    : ""
+}
 
 ===
 ${phrase}

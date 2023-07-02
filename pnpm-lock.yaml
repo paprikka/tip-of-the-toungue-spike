@@ -55,6 +55,9 @@ devDependencies:
   '@types/testing-library__jest-dom':
     specifier: ^5.14.6
     version: 5.14.6
+  cross-fetch:
+    specifier: ^3.1.7
+    version: 3.1.7
   jest:
     specifier: ^29.5.0
     version: 29.5.0(@types/node@20.3.2)
@@ -1684,6 +1687,14 @@ packages:
   /cookie@0.4.2:
     resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
     engines: {node: '>= 0.6'}
+    dev: true
+
+  /cross-fetch@3.1.7:
+    resolution: {integrity: sha512-Ff9FKeIMm0Rx1o8TEV87bTK5M232akt7uSAYrSTU/QA/W6Jj9P+fWn1mxGgl+dwDzpFoAY35OIS2SJXA8WEWKA==}
+    dependencies:
+      node-fetch: 2.6.12
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /cross-spawn@7.0.3:

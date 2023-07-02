@@ -1,12 +1,14 @@
 import { create } from "zustand";
-import { APIGuessResponsePayload } from "./types";
+import { APIGuessRequestPayload, APIGuessResponsePayload } from "./types";
 
 export type AppState = {
   description: string;
+  exclude: string[];
   lastGuessResponse?: APIGuessResponsePayload;
   error?: string;
   status: "idle" | "loading" | "results" | "error";
   setDescription: (description: string) => void;
+  setExclude: (guessLabels: string[]) => void;
   requestGuesses: () => Promise<void>;
 
   restart: () => void;
@@ -14,11 +16,14 @@ export type AppState = {
 
 export const useAppStore = create<AppState>((set, get) => ({
   description: "",
+  exclude: [],
   lastGuessResponse: undefined,
   error: undefined,
   status: "idle",
 
   setDescription: (description: string) => set({ description }),
+  setExclude: (guessLabels: string[]) =>
+    set({ exclude: [...get().exclude, ...guessLabels] }),
   requestGuesses: async () => {
     set({ status: "loading", error: undefined });
     try {
@@ -26,7 +31,8 @@ export const useAppStore = create<AppState>((set, get) => ({
         method: "POST",
         body: JSON.stringify({
           description: get().description,
-        }),
+          exclude: get().exclude,
+        } as APIGuessRequestPayload),
       });
 
       const [response] = await Promise.all([
