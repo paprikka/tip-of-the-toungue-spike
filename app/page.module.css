@@ -4,7 +4,6 @@
   display: flex;
   justify-items: center;
   justify-content: center;
-  background: var(--color-bg);
 }
 
 .pageContainer {
@@ -12,10 +11,12 @@
   max-width: 30rem;
   width: 100%;
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   border: 2px solid;
   box-shadow: 4px 4px 0 var(--color-text);
   overflow: hidden;
+  background-color: var(--color-bg);
 }
 
 .header {
@@ -27,7 +28,7 @@
   place-items: center;
 }
 .footer {
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0;
   border-top: 2px solid;
   text-align: end;
 }
