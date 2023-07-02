@@ -16,7 +16,7 @@ export const ResultsView: FC = () => {
 
   const handleFoundClick = async () => {
     setIsHappy(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     setIsHappy(false);
     // location.reload();
   };

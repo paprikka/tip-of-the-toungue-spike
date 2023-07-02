@@ -1,0 +1,44 @@
+.container {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  --doggo-time: 5s;
+}
+
+.container img {
+  position: absolute;
+}
+
+.top {
+  top: 0;
+  right: 0;
+
+  animation: enter-doggo-top var(--doggo-time) linear both;
+}
+
+@keyframes enter-doggo-top {
+  from {
+    transform: translateX(100%) scale(-1, -1);
+  }
+
+  to {
+    transform: translateX(-100vw) scale(-1, -1);
+  }
+}
+
+.bottom {
+  bottom: 0;
+  left: 0;
+
+  animation: enter-doggo-bottom var(--doggo-time) linear both;
+}
+
+@keyframes enter-doggo-bottom {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100vw);
+  }
+}
