@@ -16,6 +16,9 @@ export const POST = async (request: Request) => {
   const payload: APIGuessRequestPayload | undefined = await request
     .json()
     .catch();
+
+  console.log({ payload });
+
   if (!payload) return onError(new Error("Invalid payload"));
 
   const { description, exclude } = payload;
@@ -27,5 +30,6 @@ export const POST = async (request: Request) => {
   if (!guessResponse)
     return onError(new Error("Null guess response received "));
 
+  console.log({ guessResponse, requestPayload: payload });
   return NextResponse.json(guessResponse);
 };
