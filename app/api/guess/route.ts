@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCompletion } from "./openai";
 import { APIErrorResponsePayload, APIGuessRequestPayload } from "@/app/types";
+import { saveGuess } from "./storage";
 
 const onError = (error: Error, statusCode = 500) =>
   NextResponse.json<APIErrorResponsePayload>(
@@ -30,6 +31,7 @@ export const POST = async (request: Request) => {
   if (!guessResponse)
     return onError(new Error("Null guess response received "));
 
-  console.log({ guessResponse, requestPayload: payload });
+  saveGuess(payload, guessResponse);
+
   return NextResponse.json(guessResponse);
 };

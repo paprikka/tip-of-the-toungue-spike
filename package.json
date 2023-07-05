@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/node": "20.3.2",
     "@types/react-dom": "18.2.6",
+    "@vercel/kv": "^0.2.2",
     "classnames": "^2.3.2",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",

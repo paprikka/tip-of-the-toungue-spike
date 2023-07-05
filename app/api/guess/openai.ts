@@ -27,7 +27,7 @@ ${phrase}
 ===
 `.trim();
 
-type OpenAIResponsePayload = {
+export type OpenAIResponsePayload = {
   guesses: Guess[];
 };
 
