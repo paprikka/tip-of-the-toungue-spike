@@ -1,5 +1,4 @@
 import { kv } from "@vercel/kv";
-import { response } from "msw";
 
 const run = async () => {
   const [_, keys] = await kv.scan(0, {
