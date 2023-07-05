@@ -13,4 +13,5 @@ export type APIGuessResponsePayload = {
 export type APIGuessRequestPayload = {
   description: string;
   exclude: string[];
+  canShareDescriptions: boolean;
 };

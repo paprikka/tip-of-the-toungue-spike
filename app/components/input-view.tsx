@@ -5,7 +5,14 @@ import { TextArea } from "./textarea";
 import { useAppStore } from "../app-store";
 import { Button } from "./button";
 export const InputView = ({}) => {
-  const { description, setDescription, requestGuesses } = useAppStore();
+  const {
+    description,
+    setDescription,
+    requestGuesses,
+    canShareDescriptions,
+    setCanShareDescriptions,
+  } = useAppStore();
+
   return (
     <form className={styles.container} onSubmit={(e) => e.preventDefault()}>
       <h2>
@@ -19,6 +26,14 @@ export const InputView = ({}) => {
         placeholder="Be as descriptive as you can, e.g.:
          A movie in which a girl finds an expensive dress for cheap (pink or red) and uses it to fit in with rich people. She struggles to find other expensive clothes and transforms the dress several times to pretend it's different outfits"
       ></TextArea>
+      <label>
+        <input
+          type="checkbox"
+          checked={canShareDescriptions}
+          onChange={() => setCanShareDescriptions(!canShareDescriptions)}
+        />{" "}
+        Let Rafal read this to learn
+      </label>
       <Button
         disabled={description.length < 10}
         onClick={() => requestGuesses()}

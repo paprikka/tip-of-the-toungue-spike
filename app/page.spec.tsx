@@ -23,9 +23,9 @@ it("should render the page", () => {
 
   // 1. use getByText to find an element with text starting with 'Arrgh'. The element contains children  so dont match using a string
 
-  expect(getByRole(container, "main").textContent).toMatchInlineSnapshot(
-    `"Arrgh, there’s a phrase on the tip of my tongue, but can’t remember what it is... it’s a(n):Guess"`
-  );
+  expect(getByRole(container, "main").textContent).toMatchInlineSnapshot(`"Arrgh, there’s a phrase on the tip of my tongue, but can’t remember what it is... it’s a(n): Let Rafal read this to learnGuess"`
+
+);
 });
 
 it("should guess the phrase", async () => {

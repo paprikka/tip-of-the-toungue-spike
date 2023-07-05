@@ -1,13 +1,12 @@
 "use client";
 
-import styles from "./page.module.css";
-import { InputView } from "./components/input-view";
 import { useAppStore } from "./app-store";
-import { LoadingView } from "./components/loading-view";
-import { ResultsView } from "./components/results-view";
 import { ErrorView } from "./components/error-view";
+import { InputView } from "./components/input-view";
+import { LoadingView } from "./components/loading-view";
 import { Logo } from "./components/logo";
-import { Doggo } from "./components/doggo";
+import { ResultsView } from "./components/results-view";
+import styles from "./page.module.css";
 
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./test/mocks/browser");
@@ -15,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 export default function Home() {
-  const { status, isHappy } = useAppStore();
+  const { status } = useAppStore();
   return (
     <div className={styles.viewportContainer}>
       <div className={styles.pageContainer}>
@@ -36,7 +35,6 @@ export default function Home() {
           .
         </footer>
       </div>
-      {/* {isHappy ? <Doggo /> : null} */}
     </div>
   );
 }

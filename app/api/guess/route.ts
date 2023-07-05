@@ -31,7 +31,11 @@ export const POST = async (request: Request) => {
   if (!guessResponse)
     return onError(new Error("Null guess response received "));
 
-  saveGuess(payload, guessResponse);
+  console.log(`Can share descriptions: ${payload.canShareDescriptions}`);
+
+  if (payload.canShareDescriptions) {
+    saveGuess(payload, guessResponse);
+  }
 
   return NextResponse.json(guessResponse);
 };
