@@ -34,7 +34,9 @@ export const POST = async (request: Request) => {
   console.log(`Can share descriptions: ${payload.canShareDescriptions}`);
 
   if (payload.canShareDescriptions) {
-    saveGuess(payload, guessResponse);
+    console.log("Saving guess");
+    await saveGuess(payload, guessResponse);
+    console.log("Guess saved");
   }
 
   return NextResponse.json(guessResponse);

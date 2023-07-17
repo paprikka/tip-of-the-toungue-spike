@@ -7,6 +7,9 @@ const run = async () => {
 
   const events = await kv.mget(...keys);
 
+  console.log(`Found ${events.length} events`);
+  console.log({ events });
+
   const formattedEvents = events
     .filter((event) => event?.request && event?.response)
     .map(({ request, response }) =>

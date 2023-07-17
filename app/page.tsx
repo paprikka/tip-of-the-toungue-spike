@@ -8,10 +8,10 @@ import { Logo } from "./components/logo";
 import { ResultsView } from "./components/results-view";
 import styles from "./page.module.css";
 
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./test/mocks/browser");
-  worker.start();
-}
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./test/mocks/browser");
+//   worker.start();
+// }
 
 export default function Home() {
   const { status } = useAppStore();
