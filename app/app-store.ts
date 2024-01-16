@@ -20,7 +20,7 @@ export type AppState = {
 
 export const useAppStore = create<AppState>((set, get) => ({
   description: "",
-  canShareDescriptions: true,
+  canShareDescriptions: false,
   exclude: [],
   lastGuessResponse: undefined,
   error: undefined,
