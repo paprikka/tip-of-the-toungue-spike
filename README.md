@@ -1,5 +1,1 @@
-- [] design
-- [] recreate the features
-- [] publish to vercel
-- [] add umami
-- [] share with a friend
+tip.potato.horse
