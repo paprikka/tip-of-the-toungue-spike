@@ -1,10 +1,9 @@
 import { Guess } from "@/app/types";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
 const makePrompt = (phrase: string, excluded: string[]) =>
   `
@@ -33,10 +32,10 @@ export type OpenAIResponsePayload = {
 
 export const getCompletion = async (
   description: string,
-  excluded: string[] = []
+  excluded: string[] = [],
 ) => {
-  const chatCompletion = await openai
-    .createChatCompletion({
+  const chatCompletion = await openai.chat.completions
+    .create({
       model: "gpt-3.5-turbo-0613",
       temperature: 0.1,
       functions: [
@@ -74,11 +73,10 @@ export const getCompletion = async (
 
   if (!chatCompletion)
     return Promise.reject(new Error("Invalid response from OpenAI"));
-
-  console.dir(chatCompletion.data, { depth: null });
+  console.dir(chatCompletion, { depth: null });
 
   const promptResponseJSON =
-    chatCompletion.data.choices[0]?.message?.function_call?.arguments;
+    chatCompletion.choices[0]?.message?.function_call?.arguments;
 
   if (!promptResponseJSON)
     return Promise.reject(new Error("Invalid response from OpenAI"));
